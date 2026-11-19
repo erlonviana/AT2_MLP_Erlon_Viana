@@ -14,6 +14,8 @@ Trabalho prático da disciplina de Aprendizagem de Máquina. O projeto cobre o c
 - [Testes de integração HTTP](#testes-de-integração-http)
 - [Resultados](#resultados)
 - [Decisões técnicas](#decisões-técnicas)
+- [Melhorias](#melhorias)
+- [Checklist de entrega](#checklist-de-entrega)
 
 ## Visão geral
 
@@ -231,3 +233,21 @@ O MCC de 0,7096 indica boa capacidade de discriminação entre as classes, sem o
 - **`stratify=y` no `train_test_split`:** preserva a proporção das classes no treino e no teste, importante para métricas confiáveis.
 - **Pipeline completo serializado:** garante que a API aplique exatamente o mesmo pré-processamento do treino.
 - **`fastapi[standard]`:** necessário para o comando `fastapi dev`; sem o extra `standard`, o CLI não é instalado.
+
+## Melhorias
+
+- **README completo:** documentação do fluxo de ponta a ponta, com instruções de reprodução, dicionário de dados, decisões técnicas e resultados.
+- **`requisicoes.http` com quatro cenários:** um `GET` de diagnóstico, dois `POST` válidos com perfis distintos e um `POST` inválido para comprovar o HTTP 422.
+- **Ambiente reprodutível com UV:** `pyproject.toml` e `uv.lock` permitem recriar o ambiente com `uv sync`.
+- **Pipeline completo serializado:** o arquivo `.joblib` contém o pré-processamento e o estimador, reduzindo o risco de inconsistência entre treino e inferência.
+- **Validação com Pydantic:** restrições `ge`/`le` nos campos numéricos rejeitam entradas fora dos limites definidos antes de chegarem ao modelo.
+- **Early stopping na MLP:** reduz overfitting e tempo de treino, mantendo o MCC obtido.
+
+## Checklist de entrega
+
+- [x] Dataset disponível em `https://www.kaggle.com/datasets/janiobachmann/bank-marketing-dataset`.
+- [x] Notebook com análise exploratória, treinamento e avaliação.
+- [x] Pipeline treinado salvo em `models/pipeline_rede_neural.joblib`.
+- [x] API FastAPI com validação dos dados de entrada via Pydantic.
+- [x] Quatro cenários de integração documentados em `requisicoes.http`.
+- [x] Dependências e ambiente registrados em `pyproject.toml` e `uv.lock`.
