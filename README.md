@@ -245,9 +245,12 @@ O MCC de 0,7096 indica boa capacidade de discriminação entre as classes, sem o
 
 ## Checklist de entrega
 
-- [x] Dataset disponível em `https://www.kaggle.com/datasets/janiobachmann/bank-marketing-dataset`.
-- [x] Notebook com análise exploratória, treinamento e avaliação.
-- [x] Pipeline treinado salvo em `models/pipeline_rede_neural.joblib`.
-- [x] API FastAPI com validação dos dados de entrada via Pydantic.
-- [x] Quatro cenários de integração documentados em `requisicoes.http`.
+- [x] Dataset tabular do Kaggle/UCI com pelo menos 300 registros e 4 features, disponível em `https://www.kaggle.com/datasets/janiobachmann/bank-marketing-dataset`.
+- [x] Notebook com contexto, dicionário de dados, análise exploratória, treinamento e avaliação.
+- [x] Pipeline com `ColumnTransformer` + `MLPClassifier` de 3 camadas ocultas e `random_state=77`, salvo em `models/pipeline_rede_neural.joblib`.
+- [x] Métricas com `matthews_corrcoef` e matriz de confusão.
+- [x] API FastAPI com `lifespan`, `app.state.modelo` e rotas `GET /diagnostico/modelo` e `POST /predict`.
+- [x] `src/schemas.py` com `PredicaoInput` e `PredicaoOutput` validados pelo Pydantic.
+- [x] Quatro cenários de integração documentados em `requisicoes.http` (1 `GET`, 2 `POST` válidos e 1 `POST` inválido), todos com `User-Agent: Tester-Audit-Agent`.
 - [x] Dependências e ambiente registrados em `pyproject.toml` e `uv.lock`.
+- [x] Repositório público no GitHub.
