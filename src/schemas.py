@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 
+
 class PredicaoInput(BaseModel):
     age: int = Field(..., ge=18, le=100, description="Idade do cliente", examples=[45])
     job: str = Field(..., description="Profissão", examples=["admin."])

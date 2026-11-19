@@ -1,7 +1,9 @@
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, HTTPException
+
 import joblib
 import pandas as pd
+from fastapi import FastAPI, HTTPException
+
 from src.schemas import PredicaoInput, PredicaoOutput
 
 
