@@ -1,0 +1,76 @@
+### 1. Metadados do Serviço
+GET http://127.0.0.1:8000/diagnostico/modelo
+User-Agent: Tester-Audit-Agent
+Accept: application/json
+
+### 2. Predição com Perfil A (válido — cliente administrativo, contato cellular, campanha curta)
+POST http://127.0.0.1:8000/predict
+User-Agent: Tester-Audit-Agent
+Content-Type: application/json
+
+{
+  "age": 45,
+  "job": "admin.",
+  "marital": "married",
+  "education": "secondary",
+  "default": "no",
+  "balance": 1500,
+  "housing": "yes",
+  "loan": "no",
+  "contact": "cellular",
+  "day": 15,
+  "month": "may",
+  "duration": 800,
+  "campaign": 2,
+  "pdays": -1,
+  "previous": 0,
+  "poutcome": "unknown"
+}
+
+### 3. Predição com Perfil B (válido — cliente aposentado, saldo alto, campanha longa)
+POST http://127.0.0.1:8000/predict
+User-Agent: Tester-Audit-Agent
+Content-Type: application/json
+
+{
+  "age": 62,
+  "job": "retired",
+  "marital": "divorced",
+  "education": "tertiary",
+  "default": "no",
+  "balance": 8500,
+  "housing": "no",
+  "loan": "no",
+  "contact": "telephone",
+  "day": 20,
+  "month": "oct",
+  "duration": 2100,
+  "campaign": 1,
+  "pdays": 120,
+  "previous": 3,
+  "poutcome": "success"
+}
+
+### 4. Predição com Entrada Inválida (deve retornar HTTP 422)
+POST http://127.0.0.1:8000/predict
+User-Agent: Tester-Audit-Agent
+Content-Type: application/json
+
+{
+  "age": "quarenta e cinco",
+  "job": "admin.",
+  "marital": "married",
+  "education": "secondary",
+  "default": "no",
+  "balance": 1500,
+  "housing": "yes",
+  "loan": "no",
+  "contact": "cellular",
+  "day": 15,
+  "month": "may",
+  "duration": 800,
+  "campaign": 2,
+  "pdays": -1,
+  "previous": 0,
+  "poutcome": "unknown"
+}
